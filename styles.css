@@ -215,6 +215,9 @@ a { color: inherit; }
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* nedstaplar (g, j) målas utanför radhöjden, ge bakgrunden plats */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
   animation: word-in 1s var(--ease) forwards, shimmer 5s ease-in-out infinite;
   animation-delay: var(--d, 0s), 2.6s;
 }

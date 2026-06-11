@@ -40,7 +40,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 
   const labels = [
     "Er hemsida idag",
-    "Er hemsida — med oss",
+    "Er hemsida med oss",
     "Ny offertförfrågan inkommen",
   ];
 
