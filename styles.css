@@ -890,7 +890,10 @@ a { color: inherit; }
     padding: 90px 24px;
   }
   .scrolly-steps .kicker { position: static; margin: 0 0 18px; }
-  .scrolly-step {
+  /* is-active-regeln väger tyngre än en ensam klass, ta med den här
+     så att inget steg flyttas och lägger sig över de andra */
+  .scrolly-step,
+  .scrolly-step.is-active {
     position: static;
     transform: none;
     opacity: 1;
@@ -898,10 +901,6 @@ a { color: inherit; }
     margin-bottom: 36px;
   }
   .scrolly-progress { display: none; }
-  /* på mobil visas den nya sidan färdig, med avisering */
-  .site-old { opacity: 0; }
-  .site-new > div { opacity: 1; transform: none; }
-  .lead-toast { opacity: 1; transform: none; }
 
   .features { grid-template-columns: 1fr; }
   .stats { padding: 70px 0 20px; }

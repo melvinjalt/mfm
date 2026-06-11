@@ -58,11 +58,42 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
     return;
   }
 
-  function onScroll() {
-    if (mobile.matches) {
-      setPhase(2);
+  // På mobil finns ingen sticky-sektion, så där spelas faserna upp i en
+  // loop så fort mockupen syns på skärmen.
+  if (mobile.matches) {
+    let phase = 0;
+    let timer = null;
+    const durations = [2000, 2800, 3800];
+    setPhase(0);
+
+    function next() {
+      phase = (phase + 1) % 3;
+      setPhase(phase);
+      timer = setTimeout(next, durations[phase]);
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      timer = setTimeout(next, durations[0]);
       return;
     }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && timer === null) {
+            timer = setTimeout(next, durations[phase]);
+          } else if (!entry.isIntersecting && timer !== null) {
+            clearTimeout(timer);
+            timer = null;
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(browser);
+    return;
+  }
+
+  function onScroll() {
     const rect = section.getBoundingClientRect();
     const total = section.offsetHeight - window.innerHeight;
     const progress = Math.min(1, Math.max(0, -rect.top / total));
