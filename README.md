@@ -1,13 +1,15 @@
-# MFM — marknadssida
+# MFM — säljsida
 
-Landningssida för MFM, tjänsten som skapar färdiga hemsidor åt småföretag
-utifrån en kort beskrivning.
+Sidan vi visar när vi ringer säkerhetsbolag: "kolla hur mycket snyggare den
+här är än er hemsida". Fokus på synlighet, leads och att vi är tre grabbar
+som själva jobbar i branschen. Inga priser — målet är ett bokat samtal.
 
 Statisk sida utan byggsteg, svart/vit design i Apple-stil:
 
 - `index.html` — allt innehåll (svenska)
 - `styles.css` — design tokens, typografi och animationer
-- `script.js` — scrolldriven byggsekvens, manifest-text som tänds ord för ord, scrollavslöjanden
+- `script.js` — scrolldriven före/efter-sekvens, dashboard med kurva och
+  räknare, manifest-text som tänds ord för ord, scrollavslöjanden
 
 ## Köra lokalt
 

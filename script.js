@@ -1,6 +1,6 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Scrollytelling: stegen växlar och mockupen byggs medan sektionen scrollas.
+// Scrollytelling: er hemsida idag → med oss → förfrågningar, i takt med scrollen.
 (function () {
   const section = document.querySelector(".scrolly");
   const browser = document.getElementById("builder");
@@ -10,9 +10,9 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
   if (!section || !browser || steps.length === 0) return;
 
   const labels = [
-    "Skriver din beskrivning …",
-    "Bygger din hemsida …",
-    "Publicerad på dittforetag.se",
+    "Er hemsida idag",
+    "Er hemsida — med oss",
+    "Ny offertförfrågan inkommen",
   ];
 
   const mobile = window.matchMedia("(max-width: 900px)");
@@ -45,6 +45,54 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
   onScroll();
 })();
 
+// Dashboarden: kurvan ritas, siffrorna räknas upp och aviseringar dyker upp
+// när sektionen scrollas in.
+(function () {
+  const dash = document.getElementById("dashboard");
+  if (!dash) return;
+
+  const counters = Array.from(dash.querySelectorAll(".count"));
+
+  function countUp(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const start = parseInt(el.textContent, 10) || 0;
+    const duration = 1800;
+    const t0 = performance.now();
+    function tick(now) {
+      const p = Math.min(1, (now - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const value = Math.round(start + (target - start) * eased);
+      el.textContent = value.toLocaleString("sv-SE");
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function activate() {
+    dash.classList.add("dash-on");
+    counters.forEach(countUp);
+  }
+
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    dash.classList.add("dash-on");
+    counters.forEach((el) => {
+      el.textContent = parseInt(el.dataset.target, 10).toLocaleString("sv-SE");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        activate();
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.35 }
+  );
+  observer.observe(dash);
+})();
+
 // Manifestet: orden tänds ett efter ett i takt med scrollen.
 (function () {
   const text = document.getElementById("manifesto-text");
@@ -62,7 +110,6 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
   function onScroll() {
     const rect = text.getBoundingClientRect();
     const vh = window.innerHeight;
-    // 0 när texten kommer in nedifrån, 1 när den passerat mitten
     const progress = Math.min(1, Math.max(0, (vh * 0.85 - rect.top) / (vh * 0.7)));
     const lit = Math.floor(progress * spans.length);
     spans.forEach((s, i) => s.classList.toggle("lit", i < lit));
@@ -72,7 +119,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
   onScroll();
 })();
 
-// Scrollavslöjanden för kort, exempel och FAQ.
+// Scrollavslöjanden för kort och rubriker.
 (function () {
   const targets = document.querySelectorAll(".reveal");
   if (reduceMotion || !("IntersectionObserver" in window)) {
