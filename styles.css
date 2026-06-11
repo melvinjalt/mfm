@@ -53,6 +53,22 @@ a { color: inherit; }
   margin-bottom: 18px;
 }
 
+/* ============ Scrollprogress ============ */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 60;
+  pointer-events: none;
+}
+.scroll-progress i {
+  display: block;
+  height: 100%;
+  background: var(--white);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
 /* ============ Knappar ============ */
 .btn {
   display: inline-block;
@@ -61,11 +77,23 @@ a { color: inherit; }
   text-decoration: none;
   padding: 14px 30px;
   border-radius: 999px;
-  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .btn:hover { transform: scale(1.04); }
 .btn:active { transform: scale(0.98); }
 .btn-white { background: var(--white); color: var(--black); }
+.btn-white:hover { box-shadow: 0 0 40px rgba(255, 255, 255, 0.35); }
+.btn-white::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(0, 0, 0, 0.14) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+.btn-white:hover::after { animation: shine 0.8s var(--ease); }
+@keyframes shine { to { transform: translateX(120%); } }
 .btn-lg { padding: 18px 40px; font-size: 1.1rem; }
 .btn-link {
   font-weight: 500;
@@ -143,9 +171,18 @@ a { color: inherit; }
   width: 900px;
   height: 900px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
   pointer-events: none;
   animation: glow-drift 14s ease-in-out infinite alternate;
+}
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 0%, transparent 70%);
+  pointer-events: none;
 }
 @keyframes glow-drift {
   from { transform: translate(-12%, -4%) scale(1); }
@@ -164,17 +201,26 @@ a { color: inherit; }
   transform: translateY(0.35em);
   animation: word-in 1s var(--ease) forwards;
 }
-.hero-word:nth-child(1) { animation-delay: 0.15s; }
-.hero-word:nth-child(2) { animation-delay: 0.30s; }
-.hero-word:nth-child(3) { animation-delay: 0.45s; }
-.hero-word:nth-child(5) { animation-delay: 0.90s; }
-.hero-word:nth-child(6) { animation-delay: 1.05s; }
-.hero-word:nth-child(7) { animation-delay: 1.20s; }
+.hero-word { animation-delay: var(--d, 0s); }
+.hero-word:nth-child(1) { --d: 0.15s; }
+.hero-word:nth-child(2) { --d: 0.30s; }
+.hero-word:nth-child(3) { --d: 0.45s; }
+.hero-word:nth-child(5) { --d: 0.90s; }
+.hero-word:nth-child(6) { --d: 1.05s; }
+.hero-word:nth-child(7) { --d: 1.20s; }
 .hero-word-dim {
-  background: linear-gradient(180deg, #ffffff 20%, #6e6e73 100%);
+  background: linear-gradient(110deg, #6e6e73 0%, #6e6e73 38%, #ffffff 50%, #6e6e73 62%, #6e6e73 100%);
+  background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: word-in 1s var(--ease) forwards, shimmer 5s ease-in-out infinite;
+  animation-delay: var(--d, 0s), 2.6s;
+}
+@keyframes shimmer {
+  0%   { background-position: 125% 0; }
+  55%  { background-position: -25% 0; }
+  100% { background-position: -25% 0; }
 }
 @keyframes word-in {
   to { opacity: 1; filter: blur(0); transform: none; }
@@ -230,6 +276,35 @@ a { color: inherit; }
 @keyframes scroll-hint {
   0%, 100% { transform: translateY(0); opacity: 1; }
   60%      { transform: translateY(10px); opacity: 0; }
+}
+
+/* ============ Marquee ============ */
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+  padding: 22px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+.marquee-track span {
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gray-dark);
+  white-space: nowrap;
+}
+.marquee-track i { color: var(--line-dark); font-style: normal; }
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }
 
 /* ============ Scrollytelling: före → efter ============ */
@@ -293,12 +368,15 @@ a { color: inherit; }
 .scrolly-progress i.is-active { background: var(--white); }
 
 /* ---- Webbläsarmockupen ---- */
+.scrolly-demo { perspective: 1200px; }
 .browser {
   background: #101012;
   border: 1px solid var(--line-dark);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9), 0 -20px 80px -50px rgba(255, 255, 255, 0.2);
+  will-change: transform;
+  transition: transform 0.2s ease-out;
 }
 .browser-bar {
   display: flex;
@@ -447,12 +525,20 @@ a { color: inherit; }
 /* ============ Dashboard: före/efter ============ */
 .dashboard {
   margin-top: 64px;
-  background: #101012;
+  background: linear-gradient(180deg, #131316, #0b0b0d);
   border: 1px solid var(--line-dark);
   border-radius: var(--radius);
   padding: 28px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 -30px 120px -60px rgba(255, 255, 255, 0.25), 0 40px 100px -40px rgba(0, 0, 0, 0.9);
+}
+.dashboard::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 .dash-head {
   display: flex;
@@ -654,7 +740,21 @@ a { color: inherit; }
 .cta-final {
   text-align: center;
   padding: 24vh 24px;
+  position: relative;
+  overflow: hidden;
 }
+.cta-final::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.09) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-final h2, .cta-final .btn, .cta-final .cta-note { position: relative; }
 .cta-final h2 {
   font-size: clamp(2.4rem, 6vw, 4.6rem);
   font-weight: 700;
@@ -689,6 +789,8 @@ a { color: inherit; }
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 .reveal.visible { opacity: 1; transform: none; }
+/* när dashboarden väl visats ska lutningen följa musen direkt */
+.dashboard.reveal.visible { transition: transform 0.18s ease-out; will-change: transform; }
 
 /* ============ Responsivt ============ */
 @media (max-width: 900px) {
@@ -734,6 +836,10 @@ a { color: inherit; }
     transform: none;
   }
   .hero-scroll span, .hero-glow, .builder-pulse { animation: none; }
+  .hero-word-dim { animation: none; opacity: 1; filter: none; }
+  .marquee-track { animation: none; }
+  .btn-white:hover::after { animation: none; }
+  .browser, .dashboard { transition: none; }
   .reveal, .site-new > div, .lead-toast, .toast, .dash-chart .spark {
     opacity: 1; transform: none; transition: none;
   }

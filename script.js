@@ -1,5 +1,34 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Tunn vit linje högst upp som visar hur långt ner på sidan man är.
+(function () {
+  const bar = document.getElementById("progress");
+  if (!bar) return;
+  function onScroll() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = `scaleX(${total > 0 ? window.scrollY / total : 0})`;
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+
+// 3D-lutning på mockuperna när muspekaren rör sig över dem (endast desktop).
+(function () {
+  if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
+  const MAX = 7;
+  document.querySelectorAll(".browser, .dashboard").forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(1200px) rotateY(${x * MAX}deg) rotateX(${-y * MAX}deg)`;
+    });
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "";
+    });
+  });
+})();
+
 // Scrollytelling: er hemsida idag → med oss → förfrågningar, i takt med scrollen.
 (function () {
   const section = document.querySelector(".scrolly");
