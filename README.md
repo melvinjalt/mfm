@@ -3,11 +3,11 @@
 Landningssida för MFM, tjänsten som skapar färdiga hemsidor åt småföretag
 utifrån en kort beskrivning.
 
-Statisk sida utan byggsteg:
+Statisk sida utan byggsteg, svart/vit design i Apple-stil:
 
 - `index.html` — allt innehåll (svenska)
-- `styles.css` — design tokens och layout
-- `script.js` — hero-animationen ("hemsidan bygger sig själv") och scrollavslöjanden
+- `styles.css` — design tokens, typografi och animationer
+- `script.js` — scrolldriven byggsekvens, manifest-text som tänds ord för ord, scrollavslöjanden
 
 ## Köra lokalt
 

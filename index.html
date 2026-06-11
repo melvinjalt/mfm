@@ -7,25 +7,22 @@
   <meta name="description" content="Berätta om ditt företag, så skapar MFM en färdig hemsida på några minuter. Ingen kod, inga krångliga verktyg.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B2239'/><rect x='7' y='9' width='18' height='3' rx='1.5' fill='%23FFCB2E'/><rect x='7' y='15' width='12' height='3' rx='1.5' fill='%23fff'/><rect x='7' y='21' width='8' height='3' rx='1.5' fill='%23fff' opacity='.5'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23000'/><rect x='7' y='9' width='18' height='3' rx='1.5' fill='%23fff'/><rect x='7' y='15' width='12' height='3' rx='1.5' fill='%23fff' opacity='.6'/><rect x='7' y='21' width='8' height='3' rx='1.5' fill='%23fff' opacity='.3'/></svg>">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="container header-inner">
-    <a class="logo" href="#">
-      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      MFM
-    </a>
+  <div class="header-inner">
+    <a class="logo" href="#">MFM</a>
     <nav class="site-nav" aria-label="Huvudmeny">
       <a href="#sa-funkar-det">Så funkar det</a>
       <a href="#exempel">Exempel</a>
       <a href="#priser">Priser</a>
-      <a href="#fragor">Vanliga frågor</a>
+      <a href="#fragor">Frågor</a>
     </nav>
-    <a class="btn btn-primary btn-sm" href="#skapa">Skapa din hemsida</a>
+    <a class="nav-cta" href="#skapa">Skapa din hemsida</a>
   </div>
 </header>
 
@@ -33,109 +30,109 @@
 
   <!-- ============ Hero ============ -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Hemsidetjänst för småföretag</p>
-        <h1>Din hemsida<br>bygger sig själv.</h1>
-        <p class="lead">Berätta om ditt företag med några meningar. MFM sätter ihop en färdig hemsida med text, design och bilder — klar att publicera på några minuter.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#skapa">Skapa din hemsida</a>
-          <a class="btn btn-ghost" href="#sa-funkar-det">Se hur det funkar</a>
-        </div>
-        <p class="hero-note">Gratis att prova · Inget konto krävs för förhandsvisning</p>
-      </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <h1>
+      <span class="hero-word">Din</span>
+      <span class="hero-word">hemsida.</span><br>
+      <span class="hero-word hero-word-dim">Bygger</span>
+      <span class="hero-word hero-word-dim">sig</span>
+      <span class="hero-word hero-word-dim">själv.</span>
+    </h1>
+    <p class="hero-sub">Beskriv ditt företag med några meningar. <br>Färdig hemsida på några minuter.</p>
+    <div class="hero-actions">
+      <a class="btn btn-white" href="#skapa">Skapa din hemsida</a>
+      <a class="btn-link" href="#sa-funkar-det">Se hur det funkar <span aria-hidden="true">›</span></a>
+    </div>
+    <div class="hero-scroll" aria-hidden="true"><span></span></div>
+  </section>
 
-      <!-- Signaturen: en minisida som bygger ihop sig själv -->
-      <div class="hero-demo" aria-hidden="true">
-        <div class="browser" id="builder">
-          <div class="browser-bar">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="browser-url">dittforetag.se</span>
+  <!-- ============ Scrollytelling: sidan byggs medan du scrollar ============ -->
+  <section class="scrolly" id="sa-funkar-det">
+    <div class="scrolly-sticky">
+      <div class="scrolly-inner">
+
+        <div class="scrolly-steps">
+          <p class="kicker">Så funkar det</p>
+          <div class="scrolly-step is-active" data-step="0">
+            <h2>Berätta.</h2>
+            <p>Skriv vad ditt företag gör, vilka ni hjälper och hur man når er. Vardagligt språk räcker.</p>
           </div>
-          <div class="browser-body">
-            <div class="b-block b-nav">
-              <span class="b-logo"></span>
-              <span class="b-link"></span><span class="b-link"></span><span class="b-link"></span>
+          <div class="scrolly-step" data-step="1">
+            <h2>Granska.</h2>
+            <p>MFM skapar struktur, texter och design. Vill du ändra något skriver du det bara: ”gör rubriken kortare”.</p>
+          </div>
+          <div class="scrolly-step" data-step="2">
+            <h2>Publicera.</h2>
+            <p>Koppla ditt domännamn eller använd en gratis adress. Sidan ligger uppe direkt.</p>
+          </div>
+          <div class="scrolly-progress" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+
+        <div class="scrolly-demo" aria-hidden="true">
+          <div class="browser" id="builder" data-phase="0">
+            <div class="browser-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="browser-url">dittforetag.se</span>
             </div>
-            <div class="b-block b-hero">
-              <div class="b-hero-text">
-                <span class="b-line b-line-lg"></span>
-                <span class="b-line"></span>
-                <span class="b-line b-line-short"></span>
-                <span class="b-btn"></span>
+            <div class="browser-body">
+              <div class="b-block b-nav" data-in="1">
+                <span class="b-logo"></span>
+                <span class="b-link"></span><span class="b-link"></span><span class="b-link"></span>
               </div>
-              <div class="b-hero-img"></div>
+              <div class="b-block b-hero" data-in="1">
+                <div class="b-hero-text">
+                  <span class="b-line b-line-lg"></span>
+                  <span class="b-line"></span>
+                  <span class="b-line b-line-short"></span>
+                  <span class="b-btn"></span>
+                </div>
+                <div class="b-hero-img"></div>
+              </div>
+              <div class="b-block b-cards" data-in="2">
+                <span class="b-card"></span><span class="b-card"></span><span class="b-card"></span>
+              </div>
+              <div class="b-block b-footer" data-in="2"></div>
             </div>
-            <div class="b-block b-cards">
-              <span class="b-card"></span><span class="b-card"></span><span class="b-card"></span>
-            </div>
-            <div class="b-block b-footer"></div>
+            <div class="builder-status"><span class="builder-pulse"></span><span id="builder-label">Skriver din beskrivning …</span></div>
           </div>
-          <div class="builder-status"><span class="builder-pulse"></span><span id="builder-label">Bygger din hemsida …</span></div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ============ Meta-rad ============ -->
-  <div class="meta-strip">
-    <div class="container">
-      <p>Den här sidan? Byggd med MFM, förstås — utifrån en enda sammanfattning.</p>
-    </div>
-  </div>
-
-  <!-- ============ Så funkar det ============ -->
-  <section class="section" id="sa-funkar-det">
-    <div class="container">
-      <p class="eyebrow">Så funkar det</p>
-      <h2>Från beskrivning till publicerad sida i tre steg</h2>
-      <ol class="steps">
-        <li class="step">
-          <span class="step-num">1</span>
-          <h3>Berätta</h3>
-          <p>Skriv vad ditt företag gör, vilka ni hjälper och hur man når er. Vardagligt språk räcker — ingen mall att fylla i.</p>
-        </li>
-        <li class="step">
-          <span class="step-num">2</span>
-          <h3>Granska</h3>
-          <p>MFM skapar en komplett sida med struktur, texter och design. Vill du ändra något skriver du det bara: ”gör rubriken kortare”.</p>
-        </li>
-        <li class="step">
-          <span class="step-num">3</span>
-          <h3>Publicera</h3>
-          <p>Koppla ditt domännamn eller använd en gratis adress. Sidan ligger uppe direkt, snabb och säker.</p>
-        </li>
-      </ol>
-    </div>
+  <!-- ============ Manifest: ord som tänds vid scroll ============ -->
+  <section class="manifesto">
+    <p id="manifesto-text">Ingen kod. Inga mallar att fylla i. Inga verktyg att lära sig. Bara ditt företag, beskrivet med dina egna ord — och en hemsida som ser ut som om du anlitat en byrå.</p>
   </section>
 
-  <!-- ============ Allt som ingår ============ -->
-  <section class="section section-dark">
+  <!-- ============ Funktioner ============ -->
+  <section class="section section-light">
     <div class="container">
-      <p class="eyebrow">Allt som ingår</p>
-      <h2>Det du behöver. Inget du måste lära dig.</h2>
+      <p class="kicker">Allt som ingår</p>
+      <h2 class="section-title">Det du behöver.<br>Inget du måste lära dig.</h2>
       <div class="features">
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Design som passar din bransch</h3>
           <p>Färger, typsnitt och layout väljs utifrån vad du gör — en snickare och ett kafé får inte samma sida.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Färdiga texter</h3>
           <p>Rubriker och brödtext skrivs åt dig på korrekt svenska, utifrån din egen beskrivning.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Mobilanpassad från start</h3>
           <p>Sidan fungerar lika bra i telefonen som på datorn, utan att du behöver tänka på det.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Syns på Google</h3>
           <p>Sidtitlar, beskrivningar och struktur sätts upp så att sökmotorer hittar dig.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Eget domännamn</h3>
           <p>Koppla en adress du redan äger eller registrera en ny direkt i tjänsten.</p>
         </div>
-        <div class="feature">
+        <div class="feature reveal">
           <h3>Uppdatera med en mening</h3>
           <p>Nya öppettider eller en ny tjänst? Skriv det till MFM så är sidan uppdaterad.</p>
         </div>
@@ -146,12 +143,12 @@
   <!-- ============ Exempel ============ -->
   <section class="section" id="exempel">
     <div class="container">
-      <p class="eyebrow">Exempel</p>
-      <h2>Olika företag, olika sidor</h2>
+      <p class="kicker">Exempel</p>
+      <h2 class="section-title">Olika företag.<br>Olika sidor.</h2>
       <p class="section-lead">Varje hemsida formges utifrån verksamheten. Här är tre sidor byggda från var sin kort beskrivning.</p>
       <div class="examples">
-        <figure class="example">
-          <div class="example-thumb thumb-salon">
+        <figure class="example reveal">
+          <div class="example-thumb">
             <div class="t-nav"></div>
             <div class="t-hero"><span class="t-title"></span><span class="t-sub"></span></div>
             <div class="t-row"><span></span><span></span></div>
@@ -161,8 +158,8 @@
             <span>”Frisörsalong med drop-in och bokning online.”</span>
           </figcaption>
         </figure>
-        <figure class="example">
-          <div class="example-thumb thumb-cafe">
+        <figure class="example reveal">
+          <div class="example-thumb">
             <div class="t-nav"></div>
             <div class="t-hero"><span class="t-title"></span><span class="t-sub"></span></div>
             <div class="t-row"><span></span><span></span></div>
@@ -172,8 +169,8 @@
             <span>”Hembakat fika och lunch, vid älven sedan 2011.”</span>
           </figcaption>
         </figure>
-        <figure class="example">
-          <div class="example-thumb thumb-bygg">
+        <figure class="example reveal">
+          <div class="example-thumb">
             <div class="t-nav"></div>
             <div class="t-hero"><span class="t-title"></span><span class="t-sub"></span></div>
             <div class="t-row"><span></span><span></span></div>
@@ -188,12 +185,12 @@
   </section>
 
   <!-- ============ Priser ============ -->
-  <section class="section section-tint" id="priser">
+  <section class="section section-light" id="priser">
     <div class="container">
-      <p class="eyebrow">Priser</p>
-      <h2>Börja gratis. Uppgradera när du vill synas på egen adress.</h2>
+      <p class="kicker">Priser</p>
+      <h2 class="section-title">Börja gratis.</h2>
       <div class="pricing">
-        <div class="price-card">
+        <div class="price-card reveal">
           <h3>Start</h3>
           <p class="price">0 kr<span>/mån</span></p>
           <ul>
@@ -202,9 +199,9 @@
             <li>Mobilanpassad design</li>
             <li>Uppdateringar med text</li>
           </ul>
-          <a class="btn btn-ghost btn-block" href="#skapa">Kom igång gratis</a>
+          <a class="btn btn-outline btn-block" href="#skapa">Kom igång gratis</a>
         </div>
-        <div class="price-card price-card-featured">
+        <div class="price-card price-card-dark reveal">
           <p class="price-badge">Vanligaste valet</p>
           <h3>Pro</h3>
           <p class="price">99 kr<span>/mån</span></p>
@@ -215,7 +212,7 @@
             <li>Kontaktformulär och bokning</li>
             <li>Support på svenska</li>
           </ul>
-          <a class="btn btn-primary btn-block" href="#skapa">Välj Pro</a>
+          <a class="btn btn-white btn-block" href="#skapa">Välj Pro</a>
         </div>
       </div>
     </div>
@@ -224,25 +221,25 @@
   <!-- ============ FAQ ============ -->
   <section class="section" id="fragor">
     <div class="container container-narrow">
-      <p class="eyebrow">Vanliga frågor</p>
-      <h2>Bra att veta innan du börjar</h2>
-      <details>
+      <p class="kicker">Vanliga frågor</p>
+      <h2 class="section-title">Bra att veta.</h2>
+      <details class="reveal">
         <summary>Måste jag kunna något om hemsidor?</summary>
         <p>Nej. Du beskriver ditt företag med egna ord — resten sköter MFM. Det finns inga inställningar du måste förstå för att komma igång.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Kan jag ändra texterna själv?</summary>
         <p>Ja. Skriv vad du vill ändra, till exempel ”lägg till att vi har stängt i juli”, så uppdateras sidan. Du kan också redigera texterna direkt om du föredrar det.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Äger jag min hemsida?</summary>
         <p>Ja. Innehållet är ditt, och med eget domännamn kan du ta med dig adressen om du någon gång vill flytta.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Vad händer om jag säger upp Pro?</summary>
         <p>Sidan ligger kvar på gratisadressen med Start-funktionerna. Inget raderas och det finns ingen bindningstid.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Hur lång tid tar det?</summary>
         <p>Första utkastet är klart på några minuter. De flesta publicerar sin sida samma dag.</p>
       </details>
@@ -251,26 +248,21 @@
 
   <!-- ============ Slut-CTA ============ -->
   <section class="cta-final" id="skapa">
-    <div class="container">
-      <h2>Beskriv ditt företag.<br>Resten är klart om några minuter.</h2>
-      <a class="btn btn-primary btn-lg" href="#">Skapa din hemsida</a>
-      <p class="hero-note">Gratis att prova — du ser hela sidan innan du bestämmer dig.</p>
-    </div>
+    <h2 class="reveal">Beskriv ditt företag.<br><span class="dim">Resten är klart om några minuter.</span></h2>
+    <a class="btn btn-white btn-lg reveal" href="#">Skapa din hemsida</a>
+    <p class="cta-note reveal">Gratis att prova — du ser hela sidan innan du bestämmer dig.</p>
   </section>
 
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <a class="logo" href="#">
-      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      MFM
-    </a>
+    <a class="logo" href="#">MFM</a>
     <nav aria-label="Sidfot">
       <a href="#sa-funkar-det">Så funkar det</a>
       <a href="#exempel">Exempel</a>
       <a href="#priser">Priser</a>
-      <a href="#fragor">Vanliga frågor</a>
+      <a href="#fragor">Frågor</a>
     </nav>
     <p>© 2026 MFM · Byggd med MFM</p>
   </div>
