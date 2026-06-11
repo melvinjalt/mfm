@@ -32,6 +32,7 @@ body {
 }
 
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.container-narrow { max-width: 760px; }
 
 h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
 
@@ -306,6 +307,27 @@ a { color: inherit; }
 @keyframes marquee {
   to { transform: translateX(-50%); }
 }
+
+/* ============ Statistik ============ */
+.stats { padding: 110px 0 40px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.stat {
+  border-left: 1px solid var(--line-dark);
+  padding-left: 28px;
+}
+.stat-value {
+  display: block;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.stat p { color: var(--gray); font-size: 1rem; max-width: 20em; }
 
 /* ============ Scrollytelling: före → efter ============ */
 .scrolly { height: 320vh; position: relative; }
@@ -712,6 +734,66 @@ a { color: inherit; }
 .feature h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
 .feature p { color: #6e6e73; font-size: 0.96rem; }
 
+/* ---- Så går det till ---- */
+.process {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 64px;
+  counter-reset: steg;
+}
+.process-step {
+  position: relative;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  padding: 90px 28px 30px;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease);
+}
+.process-step:hover { border-color: #4a4a4e; }
+.process-num {
+  position: absolute;
+  top: -18px;
+  right: 10px;
+  font-size: 6.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-dark);
+  pointer-events: none;
+}
+.process-step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
+.process-step p { color: var(--gray); font-size: 0.96rem; }
+
+/* ---- Vanliga frågor ---- */
+.section-faq details {
+  border-bottom: 1px solid var(--line-dark);
+  padding: 24px 4px;
+}
+.section-faq details:first-of-type { margin-top: 48px; border-top: 1px solid var(--line-dark); }
+.section-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.section-faq summary::-webkit-details-marker { display: none; }
+.section-faq summary::after {
+  content: "+";
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--gray);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease);
+}
+.section-faq details[open] summary::after { transform: rotate(45deg); }
+.section-faq details p { margin-top: 14px; color: var(--gray); max-width: 56em; }
+
 /* ---- Om oss ---- */
 .about {
   display: grid;
@@ -819,6 +901,9 @@ a { color: inherit; }
   .lead-toast { opacity: 1; transform: none; }
 
   .features { grid-template-columns: 1fr; }
+  .stats { padding: 70px 0 20px; }
+  .stats-grid { grid-template-columns: 1fr; gap: 36px; }
+  .process { grid-template-columns: 1fr; }
   .dash-kpis { grid-template-columns: 1fr; }
   .dash-toasts { position: static; width: auto; margin-top: 20px; }
   .about { grid-template-columns: 1fr; gap: 36px; }
